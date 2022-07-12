@@ -1,5 +1,8 @@
 package homework3;
 
+import java.sql.Array;
+import java.util.ArrayList;
+
 //user defined class example of generics
 class MyClass <T>{
     T data;
@@ -35,12 +38,34 @@ public class Program3 {
         Character[] charArray = { 'H', 'E', 'L', 'L', 'O' };
 
         System.out.println("Array integerArray contains:");
-        printArray(intArray);   // pass an Integer array
+        printArray(intArray);
 
         System.out.println("\nArray doubleArray contains:");
-        printArray(doubleArray);   // pass a Double array
+        printArray(doubleArray);
 
         System.out.println("\nArray characterArray contains:");
-        printArray(charArray);   // pass a Character array
+        printArray(charArray);
+
+
+        ArrayList<Integer> listOfNumbers = new ArrayList<>();
+
+        listOfNumbers.add(1);
+        listOfNumbers.add(2);
+        listOfNumbers.add(3);
+        listOfNumbers.add(4);
+        listOfNumbers.add(5);
+
+        System.out.println("Arraylist of Integers");
+        System.out.println(listOfNumbers);
+
+
+        ArrayList<String> listOfStrings = new ArrayList<>();
+        listOfStrings.add("Hello");
+        listOfStrings.add("Good");
+        listOfStrings.add("Morning");
+        listOfStrings.add("Everyone");
+        System.out.println("ArrayList of Strings");
+        System.out.println(listOfStrings);
+
     }
 }
