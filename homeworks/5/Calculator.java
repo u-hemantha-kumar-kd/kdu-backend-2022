@@ -1,6 +1,8 @@
 package io.javabrains;
 
 public class Calculator {
+
+    //various methods of calculator
     public int add(int a, int b)
     {
         return a + b;

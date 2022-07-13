@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorTest {
 
-    // Run once, e.g. Database connection, connection pool
+    // Run once, e.g. Database connection
     @BeforeAll
     public static void runOnceBeforeAllTests() {
         System.out.println("@BeforeAll - runOnceBeforeTesting");
