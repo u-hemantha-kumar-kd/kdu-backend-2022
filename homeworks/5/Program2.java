@@ -78,7 +78,7 @@ public class Program2 {
             FieldLevelAnnotationExample myField = field.getAnnotation(FieldLevelAnnotationExample.class);
             System.out.println("field name: " + myField.name());
 
-            // changed the access to public
+       
             field.setAccessible(true);
             Object value = null;
             try {
