@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="branch" class="com.hemanth.codes.Branch"
+		scope="singleton" init-method="setBranchIdAndName"
+		destroy-method="destroy">
+		<property name="branchId" value="100"></property>
+		<property name="branchName" value="Computer Science"></property>
+	</bean>
+
+	<bean id="student" class="com.hemanth.codes.Student"
+		scope="prototype" init-method="startSchooling">
+		<property name="studentId" value="100"></property>
+		<property name="studentName" value="Ajit"></property>
+	</bean>
+
+
+	<bean id="studentTwo" class="com.hemanth.codes.Student"
+		scope="prototype" init-method="startSchooling">
+		<constructor-arg name="studentId" value="101"></constructor-arg>
+		<constructor-arg name="studentName" value="Hemanth"></constructor-arg>
+	</bean>
+
+
+
+</beans>
