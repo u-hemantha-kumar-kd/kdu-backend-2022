@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="physicsTeacher" class="com.hemanth.codes.PhysicsTeacher" />
+	<bean id="physicsTeacher1"
+		class="com.hemanth.codes.PhysicsTeacher" scope="prototype">
+		<property name="id" value="101" />
+		<property name="subject" value="Physics" />
+	</bean>
+	<bean id="mathematicsTeacher"
+		class="com.hemanth.codes.MathematicsTeacher" />
+
+	<bean id="application"
+		class="com.hemanth.codes.spring.xml.Application">
+		<constructor-arg
+			type="com.hemanth.codes.PhysicsTeacher" ref="physicsTeacher" />
+		<constructor-arg
+			type="com.hemanth.codes.MathematicsTeacher" ref="mathematicsTeacher" />
+	</bean>
+
+
+</beans>
