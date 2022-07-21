@@ -82,6 +82,7 @@ public class ReadAndProcessJsonFiles {
             wallet_address_to_trader_map.put(wallet_address_of_trader, getTraderWithGivenWalletAddress(wallet_address_of_trader));
         String code_of_the_coin = (String) transaction_data_object.get("coin");
         code_to_coin_map.put(code_of_the_coin, getCoinWithGivenCode(code_of_the_coin));
+        String hash = getBlockHash();
         TransactionThread t1 = new TransactionThread(transaction);
         t1.start();
     }
@@ -98,12 +99,34 @@ public class ReadAndProcessJsonFiles {
             Object obj = jsonParser.parse(reader);
             JSONArray transaction_list =  (JSONArray) obj;
             transaction_list.forEach( transaction -> parseTransactionObject( (JSONObject) transaction ) );
-
         }  catch (IOException e) {
             e.printStackTrace();
         }  catch (
                 ParseException e) {
             throw new RuntimeException(e);
         }
+    }
+    /**
+     * Method generates the unique block hash required
+     * for transactions made using the cryptocurrencies
+     * @return - string representing the transaction hashcode
+     */
+    private static String getBlockHash() {
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder transactionHash = new StringBuilder();
+        Random rnd = new Random();
+/**
+ * Introducing delay mimicking complex
+ * calculation being performed.
+ */
+        for(double i=0;i<199999999; i++){
+            i = i;
+        }
+        while (transactionHash.length() < 128) {
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            transactionHash.append(SALTCHARS.charAt(index));
+        }
+        String hashCode = transactionHash.toString();
+        return "0x" + hashCode.toLowerCase();
     }
 }

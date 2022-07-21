@@ -13,7 +13,7 @@ public class TransactionThreadUtils {
 
     //this method updates the coins that a particular trader has and also updates the remaining volume of coins for a particular type in all_coins list
     //when a buy operation takes place, the number of coins of a particular type gets increased by the quantity of coins parameter, and subsequently result in decrease in all_coins list for that type and also updates the balance of the trader
-    public void buyCoins(String code_of_the_coin, long quantity_of_the_coin,String wallet_address_of_trader){
+    public synchronized void buyCoins(String code_of_the_coin, long quantity_of_the_coin,String wallet_address_of_trader){
         Trader trader;
         Coin coin;
         try {
@@ -35,11 +35,20 @@ public class TransactionThreadUtils {
             double updated_balance = trader.getBalance() - cost_for_all_coins_bought;
             trader.setBalance(updated_balance);
             System.out.println("Bought Coins Successfully!");
+
+        }
+        else if(coin.getCirculating_supply() < quantity_of_the_coin)
+        {
+            try {
+                Thread.currentThread().wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
 //    this method decreases the number of coins of a particular type that a trader has, increases the number of coins in all_coins list,  and updates the balance amount by adding the product of quantity of coins sold with the price of each coin.
-    public void sellCoins(String code_of_the_coin, long quantity_of_the_coin,String wallet_address_of_trader) {
+    public synchronized void sellCoins(String code_of_the_coin, long quantity_of_the_coin,String wallet_address_of_trader) {
         Trader trader;
         Coin coin;
         try {
@@ -66,7 +75,7 @@ public class TransactionThreadUtils {
     }
 
     //this method simply adds the volume of the coins of a particular type in the all_coins list
-    public  void addVolume(String code_of_the_coin, long volume_of_the_coin){
+    public synchronized void addVolume(String code_of_the_coin, long volume_of_the_coin){
 
         Coin coin = null;
         try {
@@ -79,7 +88,7 @@ public class TransactionThreadUtils {
     }
 
     //this method simply updates the price of a particular coin in the all_coins list
-    public  void updatePrice(String code_of_the_coin, double price_of_the_coin)  {
+    public synchronized void updatePrice(String code_of_the_coin, double price_of_the_coin)  {
 
         Coin coin = null;
         try {
