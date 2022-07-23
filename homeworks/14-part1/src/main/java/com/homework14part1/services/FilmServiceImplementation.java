@@ -17,13 +17,6 @@ import java.util.stream.Stream;
 @Service("filmService")
 @Transactional("transactionManager")
 public class FilmServiceImplementation implements FilmService {
-
-    // (Uncomment line 24 to 28, line 43, and line 51) AND (Comment line 29 to 33) for using HQL instead of JPA Repository.
-//    @Autowired
-//    private FilmDao filmDao;
-//
-//    @Autowired
-//    private ActorDao actorDao;
     @Autowired
     private FilmDaoJpa filmDao;
 
